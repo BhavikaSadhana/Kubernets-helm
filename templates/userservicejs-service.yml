@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userprofile
-  namespace: { { .Values.userprofile.namespace } }
+  namespace: {{ .Values.userprofile.namespace }}
 spec:
   type: NodePort
   selector:
     app: userprofile
   ports:
-    - port: { { .Values.userprofile.servicePort } }
-      targetPort: { { .Values.userprofile.servicePort } }
+    - port: {{ .Values.userprofile.servicePort }}
+      targetPort: {{ .Values.userprofile.servicePort }}
       protocol: TCP
