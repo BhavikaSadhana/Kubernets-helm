@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
-  namespace: { { .Values.mongodb.namespace } }
+  namespace: {{ .Values.mongodb.namespace }}
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
         - name: mongodb
           image: "{{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}"
           ports:
-            - containerPort: { { .Values.mongodb.servicePort } }
+            - containerPort: {{ .Values.mongodb.servicePort }}
           env:
             - name: MONGO_INITDB_DATABASE
-              value: { { .Values.mongodb.database } }
+              value: {{ .Values.mongodb.database }}
