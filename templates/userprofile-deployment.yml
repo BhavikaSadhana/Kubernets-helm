@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: userprofile
-  namespace: { { .Values.userprofile.namespace } }
+  namespace: {{ .Values.userprofile.namespace }}
 spec:
-  replicas: { { .Values.userprofile.replicas } }
+  replicas: {{ .Values.userprofile.replicas }}
   selector:
     matchLabels:
       app: userprofile
@@ -17,15 +17,15 @@ spec:
         - name: userprofile
           image: "{{ .Values.userprofile.image.repository }}:{{ .Values.userprofile.image.tag }}"
           ports:
-            - containerPort: { { .Values.userprofile.servicePort } }
+            - containerPort: {{ .Values.userprofile.servicePort }}
           env:
             - name: MONGODB_URI
-              value: { { .Values.userprofile.env.mongodbUri } }
+              value: {{ .Values.userprofile.env.mongodbUri }}
             - name: SESSION_SECRET
-              value: { { .Values.userprofile.env.sessionSecret | quote } }
+              value: {{ .Values.userprofile.env.sessionSecret }}
             - name: EMAIL_USER
-              value: { { .Values.userprofile.env.emailUser | quote } }
+              value: {{ .Values.userprofile.env.emailUser }}
             - name: EMAIL_PASS
-              value: { { .Values.userprofile.env.emailPass | quote } }
+              value: {{ .Values.userprofile.env.emailPass | quote }}
             - name: PORT
               value: "{{ .Values.userprofile.env.port }}"
