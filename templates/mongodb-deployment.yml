@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  namespace: { { .Values.mongodb.namespace } }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: "{{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}"
+          ports:
+            - containerPort: { { .Values.mongodb.servicePort } }
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: { { .Values.mongodb.database } }

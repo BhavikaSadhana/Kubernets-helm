@@ -1,0 +1,21 @@
+mongodb:
+  image:
+    repository: mongo
+    tag: latest
+  namespace: bhavana
+  database: bhavDatabase
+  servicePort: 27017
+
+userprofile:
+  image:
+    repository: saiteja2502/userprofileretail
+    tag: latest
+  namespace: bhavana
+  replicas: 2
+  servicePort: 3130
+  env:
+    mongodbUri: mongodb://mongodb:27017/bhavDatabase
+    sessionSecret: 1234
+    emailUser: chagantyteja2502@gmail.com
+    emailPass: yxoq bjuk rdnt alzp
+    port: 3130
