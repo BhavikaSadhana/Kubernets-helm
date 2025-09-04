@@ -28,4 +28,4 @@ spec:
             - name: EMAIL_PASS
               value: {{ .Values.userprofile.env.emailPass | quote }}
             - name: PORT
-              value: "{{ .Values.userprofile.env.port }}"
+              value: {{ .Values.userprofile.env.port }}
